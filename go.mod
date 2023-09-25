@@ -1,3 +1,3 @@
-module golang-utils
+module github.com/pengzuhao/golang-utils
 
 go 1.19

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"golang-utils/gochinesecalendar"
+	"github.com/pengzuhao/golang-utils/gochinesecalendar"
 )
 
 func main() {
