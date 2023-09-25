@@ -1,4 +1,4 @@
-package gochinesecalendar
+package chinesecalendar
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func IsYesterdayWorkDay(dateStr string) (property string, isHoliday bool) {
+func Bmcx(dateStr string) (property string, isHoliday bool) {
 	// layout := "2006-01-02"
 	// dateFormat, err := time.ParseInLocation(layout, dateStr, time.Local)
 	// if err != nil {
