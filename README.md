@@ -14,7 +14,7 @@ import (
 
 func main() {
 	dateStr := "2023-09-29"
-	property, isHoliday := chinesecalendar.IsYesterdayWorkDay(dateStr)
+	property, isHoliday := chinesecalendar.Bmcx(dateStr)
 	fmt.Println(property, isHoliday)
 }
 ```
