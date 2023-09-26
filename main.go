@@ -2,12 +2,10 @@ package main
 
 import (
 	"fmt"
-	"golang-utils/chinesecalendar"
-	"golang-utils/sshremotecmd"
-	// "github.com/pengzuhao/golang-utils/chinesecalendar"
-	// "github.com/pengzuhao/golang-utils/sshremotecmd"
 	// "golang-utils/chinesecalendar"
 	// "golang-utils/sshremotecmd"
+	"github.com/pengzuhao/golang-utils/chinesecalendar"
+	"github.com/pengzuhao/golang-utils/sshremotecmd"
 )
 
 var remoteAddr, userName, passwd, cmd = "192.168.131.129", "root", "1", "ls /root"
