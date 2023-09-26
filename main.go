@@ -6,9 +6,11 @@ package main
 import (
 	"fmt"
 	"golang-utils/chinesecalendar"
+	"golang-utils/customlog"
 	"golang-utils/parseyaml"
 	"golang-utils/qrcode"
 	"golang-utils/sshremotecmd"
+	"log"
 )
 
 var remoteAddr, userName, passwd, cmd = "192.168.131.129", "root", "1", "ls /opt"
@@ -55,4 +57,11 @@ func main() {
 		return
 	}
 	fmt.Println(contentRead)
+
+	// 5
+	var mylog = &customlog.MyLog{Logger: log.Default()}
+	mylog.Debug("db")
+	mylog.Info("if")
+	mylog.Warn("ww")
+	mylog.Error("ee")
 }
