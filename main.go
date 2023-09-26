@@ -32,13 +32,13 @@ func main() {
 		AllocationId: "aa",
 		RecordId:     "bb",
 	}
+	err := parseyaml.WriteYaml(yamlFile, newData)
+	if err != nil {
+		return
+	}
 	reads, err := parseyaml.ReadYaml(yamlFile)
 	if err != nil {
 		return
 	}
 	fmt.Println(reads.AllocationId, reads.EipAddress, reads.RecordId)
-	err = parseyaml.WriteYaml(yamlFile, newData)
-	if err != nil {
-		return
-	}
 }
