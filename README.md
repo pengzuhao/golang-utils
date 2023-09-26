@@ -83,3 +83,24 @@ func main() {
 	}
 }
 ```
+##
+# 4、二维码生成与解析
+```
+import (
+	"fmt"
+	"golang-utils/qrcode"
+)
+func main() {
+	var content = "https://www.bilibili.com/video/BV1Cx411J7pt/?share_source=copy_web&vd_source=93c783b46e7446e13f3f91a996ca06f9"
+	var fileName = "qrcode.png"
+	err = qrcode.QRCEncode(content, fileName)
+	if err != nil {
+		return
+	}
+	contentRead, err := qrcode.QRCDecode(fileName)
+	if err != nil {
+		return
+	}
+	fmt.Println(contentRead)
+}
+```

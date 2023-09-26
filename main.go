@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"golang-utils/chinesecalendar"
 	"golang-utils/parseyaml"
+	"golang-utils/qrcode"
 	"golang-utils/sshremotecmd"
 )
 
@@ -41,4 +42,17 @@ func main() {
 		return
 	}
 	fmt.Println(reads.AllocationId, reads.EipAddress, reads.RecordId)
+
+	// 4
+	var content = "https://www.bilibili.com/video/BV1Cx411J7pt/?share_source=copy_web&vd_source=93c783b46e7446e13f3f91a996ca06f9"
+	var fileName = "qrcode.png"
+	err = qrcode.QRCEncode(content, fileName)
+	if err != nil {
+		return
+	}
+	contentRead, err := qrcode.QRCDecode(fileName)
+	if err != nil {
+		return
+	}
+	fmt.Println(contentRead)
 }
