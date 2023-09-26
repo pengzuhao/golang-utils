@@ -22,7 +22,7 @@ func (l *MyLog) SetLevel(level int) {
 	l.level = level
 }
 
-func (l *MyLog) print(level int, msgArr ...any) {
+func (l *MyLog) print(level int, msgArr ...interface{}) {
 	var stringLv string
 	switch level {
 	case 0:
@@ -42,11 +42,11 @@ func (l *MyLog) print(level int, msgArr ...any) {
 	}
 }
 
-func (l *MyLog) Debug(msgArr ...any) {
+func (l *MyLog) Debug(msgArr ...interface{}) {
 	l.SetOutput(os.Stdout)
 	l.print(Debug, msgArr...)
 }
-func (l *MyLog) Info(msgArr ...any) {
+func (l *MyLog) Info(msgArr ...interface{}) {
 	os.MkdirAll("logs", os.ModePerm)
 	infoFile, err := os.OpenFile(
 		"logs/info.log",
@@ -58,7 +58,7 @@ func (l *MyLog) Info(msgArr ...any) {
 	l.SetOutput(infoFile)
 	l.print(Info, msgArr...)
 }
-func (l *MyLog) Warn(msgArr ...any) {
+func (l *MyLog) Warn(msgArr ...interface{}) {
 	os.MkdirAll("logs", os.ModePerm)
 	warnFile, err := os.OpenFile(
 		"logs/warn.log",
@@ -70,7 +70,7 @@ func (l *MyLog) Warn(msgArr ...any) {
 	l.SetOutput(warnFile)
 	l.print(Warn, msgArr...)
 }
-func (l *MyLog) Error(msgArr ...any) {
+func (l *MyLog) Error(msgArr ...interface{}) {
 	os.MkdirAll("logs", os.ModePerm)
 	errFile, err := os.OpenFile(
 		"logs/error.log",
