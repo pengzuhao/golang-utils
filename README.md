@@ -1,5 +1,5 @@
 ### 声明：此仓库仅用于工作和学习，禁止用于非法攻击，非法传播。一切遵守《网络安全法》。
-# 1、gochinesecalendar: 节假日判断
+# 1、chinesecalendar: 节假日判断
 用法： 
 ```
 # go get github.com/pengzuhao/golang-utils
@@ -28,3 +28,24 @@ return: (string, bool)
 - wnrl_riqi_mo, true       // 周末
 - wnrl_riqi_xiu, true      // 休假
 ##
+# 2、sshremotecmd：ssh执行远程命令
+```
+import (
+	"fmt"
+	"github.com/pengzuhao/golang-utils/sshremotecmd"
+)
+
+var remoteAddr, userName, passwd, cmd = "192.168.131.129", "root", "1", "ls /root"
+var port = 22
+
+func main() {
+	resWithOutput := sshremotecmd.CmdWithOutput(remoteAddr, userName, passwd, cmd, port)
+	fmt.Println(resWithOutput)
+	resWithOutOutput := sshremotecmd.CmdWithOutOutput(remoteAddr, userName, passwd, cmd, port)
+	fmt.Printf("Val: %v, Type: %T", resWithOutOutput, resWithOutOutput)
+}
+
+```
+返回值说明：
+- resWithOutput: string, err
+- resWithOutOutput: bool, err

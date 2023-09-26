@@ -16,7 +16,7 @@ type SSHCfg struct {
 	client     *ssh.Client
 }
 
-func GetSshSession(remoteAddr, userName, passwd string, port int) (session *ssh.Session) {
+func GetSshSession(remoteAddr, userName, passwd string, port int) (session *ssh.Session, err error) {
 	var cfg = &SSHCfg{
 		RemoteAddr: remoteAddr,
 		Username:   userName,
@@ -32,33 +32,40 @@ func GetSshSession(remoteAddr, userName, passwd string, port int) (session *ssh.
 	addr := fmt.Sprintf("%s:%d", cfg.RemoteAddr, cfg.Port)
 	client, err := ssh.Dial("tcp", addr, &config)
 	if err != nil {
-		panic(err)
+		return
 	}
 	cfg.client = client
 	session, err = cfg.client.NewSession()
 	if err != nil {
-		panic(err)
+		return
 	}
-	return session
+	return session, err
 }
 
-func CmdWithOutput(remoteAddr, userName, passwd, cmd string, port int) string {
-	session := GetSshSession(remoteAddr, userName, passwd, port)
+func CmdWithOutput(remoteAddr, userName, passwd, cmd string, port int) (bufStr string, err error) {
+	session, err := GetSshSession(remoteAddr, userName, passwd, port)
+	if err != nil {
+		return
+	}
 	defer session.Close()
 	// err = session.Run(cmd)
 	buf, err := session.CombinedOutput(cmd)
 	if err != nil {
-		panic(err)
+		return
 	}
-	return string(buf)
+	bufStr = string(buf)
+	return bufStr, err
 }
-func CmdWithOutOutput(remoteAddr, userName, passwd, cmd string, port int) bool {
-	session := GetSshSession(remoteAddr, userName, passwd, port)
-	defer session.Close()
-	err := session.Run(cmd)
+func CmdWithOutOutput(remoteAddr, userName, passwd, cmd string, port int) (res bool, err error) {
+	session, err := GetSshSession(remoteAddr, userName, passwd, port)
 	if err != nil {
-		fmt.Println(err)
-		return false
+		return
 	}
-	return true
+	defer session.Close()
+	err = session.Run(cmd)
+	if err != nil {
+		return
+	}
+	res = true
+	return res, err
 }

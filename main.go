@@ -9,6 +9,9 @@ import (
 	// "golang-utils/sshremotecmd"
 )
 
+var remoteAddr, userName, passwd, cmd = "192.168.131.129", "root", "1", "ls /root"
+var port = 22
+
 func main() {
 	// 1
 	dateStr := "2023-09-29"
@@ -16,7 +19,8 @@ func main() {
 	fmt.Println(property, isHoliday)
 
 	// 2
-	remoteAddr, userName, passwd, cmd := "192.168.131.129", "root", "1", "ls /root"
-	port := 22
-	sshremotecmd.CmdWithOutput(remoteAddr, userName, passwd, cmd, port)
+	resWithOutput, _ := sshremotecmd.CmdWithOutput(remoteAddr, userName, passwd, cmd, port)
+	fmt.Println(resWithOutput)
+	resWithOutOutput, _ := sshremotecmd.CmdWithOutOutput(remoteAddr, userName, passwd, cmd, port)
+	fmt.Printf("Val: %v, Type: %T", resWithOutOutput, resWithOutOutput)
 }
