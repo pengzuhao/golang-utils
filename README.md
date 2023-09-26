@@ -9,12 +9,12 @@
 import (
 	"fmt"
 
-	"github.com/pengzuhao/golang-utils/gochinesecalendar"
+	"github.com/pengzuhao/golang-utils/chinesecalendar"
 )
 
 func main() {
 	dateStr := "2023-09-29"
-	property, isHoliday := gochinesecalendar.IsYesterdayWorkDay(dateStr)
+	property, isHoliday := chinesecalendar.IsYesterdayWorkDay(dateStr)
 	fmt.Println(property, isHoliday)
 }
 ```
