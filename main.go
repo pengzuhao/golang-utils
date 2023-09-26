@@ -23,20 +23,21 @@ func main() {
 	resWithOutput, _ := sshremotecmd.CmdWithOutput(remoteAddr, userName, passwd, cmd, port)
 	fmt.Println(resWithOutput)
 	resWithOutOutput, _ := sshremotecmd.CmdWithOutOutput(remoteAddr, userName, passwd, cmd, port)
-	fmt.Printf("Val: %v, Type: %T", resWithOutOutput, resWithOutOutput)
+	fmt.Printf("Val: %v, Type: %T\n", resWithOutOutput, resWithOutOutput)
 
 	// 3
+	var yamlFile = "parseyaml.yaml"
 	newData := &parseyaml.YamlStruct{
 		EipAddress:   "1.1.1.1",
 		AllocationId: "aa",
 		RecordId:     "bb",
 	}
-	reads, err := parseyaml.ReadYaml()
+	reads, err := parseyaml.ReadYaml(yamlFile)
 	if err != nil {
 		return
 	}
 	fmt.Println(reads.AllocationId, reads.EipAddress, reads.RecordId)
-	err = parseyaml.WriteYaml(newData)
+	err = parseyaml.WriteYaml(yamlFile, newData)
 	if err != nil {
 		return
 	}

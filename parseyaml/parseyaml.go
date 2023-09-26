@@ -13,9 +13,7 @@ type YamlStruct struct {
 	RecordId     string `yaml:"recordid"`
 }
 
-var yamlFile = "parseyaml.yaml"
-
-func ReadYaml() (reads *YamlStruct, err error) {
+func ReadYaml(yamlFile string) (reads *YamlStruct, err error) {
 	data, err := os.ReadFile(yamlFile)
 	if err != nil {
 		fmt.Println(err)
@@ -24,7 +22,7 @@ func ReadYaml() (reads *YamlStruct, err error) {
 	err = yaml.Unmarshal(data, &reads)
 	return
 }
-func WriteYaml(newData *YamlStruct) (err error) {
+func WriteYaml(yamlFile string, newData *YamlStruct) (err error) {
 	data, err := yaml.Marshal(newData)
 	if err != nil {
 		fmt.Println(err)
