@@ -37,7 +37,7 @@ func (l *MyLog) print(level int, msgArr ...interface{}) {
 		stringLv = "Fatal "
 	}
 	if l.level <= level {
-		msgArr = append([]any{stringLv}, msgArr...)
+		msgArr = append([]interface{}{stringLv}, msgArr...)
 		l.Logger.Print(msgArr...)
 	}
 }
