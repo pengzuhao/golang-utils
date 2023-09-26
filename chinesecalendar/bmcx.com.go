@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func Bmcx(dateStr string) (property string, isHoliday bool) {
+func Bmcx(dateStr string) (property string, isHoliday bool, err error) {
 	// layout := "2006-01-02"
 	// dateFormat, err := time.ParseInLocation(layout, dateStr, time.Local)
 	// if err != nil {
@@ -25,18 +25,19 @@ func Bmcx(dateStr string) (property string, isHoliday bool) {
 	res.Header.Set("Pragma", "no-cache")
 	res.Header.Set("Upgrade-Insecure-Requests", "1")
 	if err != nil {
-		fmt.Println(err)
+		return
 	}
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
+		return
 	}
 	reStr := fmt.Sprintf(`.*class="(.*)" href="/%v__wannianrili/".*`, dateStr)
 	re := regexp.MustCompile(reStr)
 	bodySli := re.FindStringSubmatch(string(body))
 	if len(bodySli) == 0 {
 		property = "workday"
-		return property, false
+		isHoliday = false
+		return
 	}
 	property = bodySli[len(bodySli)-1]
 	switch property {
@@ -49,6 +50,5 @@ func Bmcx(dateStr string) (property string, isHoliday bool) {
 	default:
 		isHoliday = false
 	}
-	fmt.Println(isHoliday)
-	return property, isHoliday
+	return
 }

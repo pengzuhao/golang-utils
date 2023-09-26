@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/pengzuhao/golang-utils/chinesecalendar"
-	"github.com/pengzuhao/golang-utils/sshremotecmd"
+	"golang-utils/chinesecalendar"
+	"golang-utils/sshremotecmd"
+	// "github.com/pengzuhao/golang-utils/chinesecalendar"
+	// "github.com/pengzuhao/golang-utils/sshremotecmd"
 	// "golang-utils/chinesecalendar"
 	// "golang-utils/sshremotecmd"
 )
@@ -15,7 +16,7 @@ var port = 22
 func main() {
 	// 1
 	dateStr := "2023-09-29"
-	property, isHoliday := chinesecalendar.Bmcx(dateStr)
+	property, isHoliday, _ := chinesecalendar.Bmcx(dateStr)
 	fmt.Println(property, isHoliday)
 
 	// 2

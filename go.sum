@@ -1,3 +1,5 @@
+github.com/pengzuhao/golang-utils v0.0.0-20230926032324-0661e1156a29 h1:pqWe4WZHq7Zxqj5qT1URQOI+O1ekL3wqYdEGGSC+wG8=
+github.com/pengzuhao/golang-utils v0.0.0-20230926032324-0661e1156a29/go.mod h1:BfT0wmceZB7DSGQCxoFFS2v6TNnCbH3rWCUupM2EQOE=
 golang.org/x/crypto v0.13.0 h1:mvySKfSWJ+UKUii46M40LOvyWfN0s2U+46/jDd0e6Ck=
 golang.org/x/crypto v0.13.0/go.mod h1:y6Z2r+Rw4iayiXXAIxJIDAJ1zMW4yaTpebo8fPOliYc=
 golang.org/x/sys v0.12.0 h1:CM0HF96J0hcLAwsHPJZjfdNzs0gftsLfgKt57wWHJ0o=
