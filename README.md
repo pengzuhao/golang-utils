@@ -21,6 +21,8 @@ func main() {
 ```
 return: (string, bool)
 ```
+参数说明：
+- dateStr中，月份、日期小于10须补0
 
 返回值说明：
 - workday, false           // 工作日
