@@ -88,7 +88,7 @@ func main() {
 ```
 import (
 	"fmt"
-	"golang-utils/qrcode"
+	"github.com/pengzuhao/golang-utils/qrcode"
 )
 func main() {
 	var content = "https://www.bilibili.com/video/BV1Cx411J7pt/?share_source=copy_web&vd_source=93c783b46e7446e13f3f91a996ca06f9"
@@ -102,5 +102,19 @@ func main() {
 		return
 	}
 	fmt.Println(contentRead)
+}
+```
+##
+# 5、自定义日志（不同级别的日志，输出到logs目录下不同的文件中）
+```
+import (
+	"github.com/pengzuhao/golang-utils/customlog"
+)
+func main() {
+	var mylog = &customlog.MyLog{Logger: log.Default()}
+	mylog.Debug("db")
+	mylog.Info("if")
+	mylog.Warn("ww")
+	mylog.Error("ee")
 }
 ```
