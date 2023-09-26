@@ -105,7 +105,9 @@ func main() {
 }
 ```
 ##
-# 5、自定义日志（不同级别的日志，输出到logs目录下不同的文件中）
+# 5、自定义日志
+- info、warn、err 日志，输出到logs目录下不同的文件中
+- debug 日志，作为标准输出
 ```
 import (
 	"github.com/pengzuhao/golang-utils/customlog"
