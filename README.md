@@ -18,6 +18,7 @@ func main() {
 	fmt.Println(property, isHoliday)
 }
 ```
+
 ```
 return: (string, bool, err)
 ```
