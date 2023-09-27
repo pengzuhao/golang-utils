@@ -158,3 +158,51 @@ func main(){
 }
 ```
 ## 
+# 8、单位转换（4舍5入）
+```
+import (
+	"github.com/pengzuhao/golang-utils/unitconv"
+)
+
+func main(){
+	var num, unit, unitType = 156789, "KB", "byte"
+	numLast, unitLast := unitconv.Compute(num, unit, unitType)
+	fmt.Println(numLast, unitLast)
+}
+```
+### 参数说明：
+- UnitType == "bandwidth" // 带宽
+1. bps
+2. Kbps
+3. Mbps
+4. Gbps
+5. Tbps
+6. Pbps
+- UnitType == byte	// 字节
+1. Byte
+2. KB
+3. MB
+4. GB
+5. TB
+6. PB
+- UnitType == meter	// 长度
+1. nm
+2. um
+3. mm
+4. m
+5. km
+- UnitType == weight 	// 质量
+1. mg
+2. g
+3. kg
+4. t
+- UnitType == count 	// 数量
+1. count
+2. thousand
+3. million
+4. billion
+### 返回值说明
+```
+// 四舍五入保留2位小数float64， string
+153.11 MB
+```
