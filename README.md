@@ -145,3 +145,16 @@ func main(){
 	fmt.Println(res)
 }
 ```
+##
+# 7、文件监控
+```
+import (
+	"github.com/pengzuhao/golang-utils/watchdir"
+)
+
+func main(){
+	dir := "./"
+	watchdir.WatchDir(dir)
+}
+```
+## 

@@ -11,6 +11,7 @@ import (
 	"golang-utils/qrcode"
 	"golang-utils/redisopera"
 	"golang-utils/sshremotecmd"
+	"golang-utils/watchdir"
 	"log"
 	"time"
 )
@@ -83,4 +84,8 @@ func main() {
 		return
 	}
 	fmt.Println(res)
+
+	// 7
+	dir := "./"
+	watchdir.WatchDir(dir)
 }
