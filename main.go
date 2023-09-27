@@ -9,8 +9,10 @@ import (
 	"golang-utils/customlog"
 	"golang-utils/parseyaml"
 	"golang-utils/qrcode"
+	"golang-utils/redisopera"
 	"golang-utils/sshremotecmd"
 	"log"
+	"time"
 )
 
 var remoteAddr, userName, passwd, cmd = "192.168.131.129", "root", "1", "ls /opt"
@@ -64,4 +66,21 @@ func main() {
 	mylog.Info("if")
 	mylog.Warn("ww")
 	mylog.Error("ee")
+
+	// 6
+	var ipaddr, passwd, key, value, expired = "192.168.131.129:6379", "123456", "a", 1, 0 * time.Second
+
+	redisopera.RedisSet(ipaddr, passwd, key, value, expired)
+
+	res, err := redisopera.RedisGet(ipaddr, passwd, key)
+	if err != nil {
+		return
+	}
+	fmt.Println(res)
+
+	res, err = redisopera.RedisConnPoolGet(ipaddr, passwd, key)
+	if err != nil {
+		return
+	}
+	fmt.Println(res)
 }

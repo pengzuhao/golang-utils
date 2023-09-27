@@ -120,3 +120,28 @@ func main() {
 	mylog.Error("ee")
 }
 ```
+##
+# 6、redis 
+```
+import (
+	"github.com/pengzuhao/golang-utils/redisopera"
+)
+
+func main(){
+	var ipaddr, passwd, key, value, expired = "192.168.131.129:6379", "123456", "a", 1, 0 * time.Second
+
+	redisopera.RedisSet(ipaddr, passwd, key, value, expired)	// set
+
+	res, err := redisopera.RedisGet(ipaddr, passwd, key)		// get
+	if err != nil {
+		return
+	}
+	fmt.Println(res)
+
+	res, err = redisopera.RedisConnPoolGet(ipaddr, passwd, key)	// redis pool get
+	if err != nil {
+		return
+	}
+	fmt.Println(res)
+}
+```
