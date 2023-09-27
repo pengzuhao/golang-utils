@@ -58,13 +58,22 @@ var Base = map[string]int{
 	"count":     1000,
 }
 
-func Compute(num int, unit, unitType string) (numLast float64, unitLast string) {
-	var j int
+func Compute(num int, unit, unitType string) (numLast float64, unitLast string, err error) {
+	var j int = 10
+	_, isExist := UnitType[unitType]
+	if !isExist {
+		err = fmt.Errorf("unknown unittype")
+		return
+	}
 	for k, v := range UnitType[unitType] {
 		if v == unit {
 			j = k
 			break
 		}
+	}
+	if j == 10 {
+		err = fmt.Errorf("unknown unit")
+		return
 	}
 	base := Base[unitType]
 	if num < base {
@@ -73,8 +82,9 @@ func Compute(num int, unit, unitType string) (numLast float64, unitLast string) 
 		return
 	}
 	for i := 0; i < len(UnitType[unitType]); i++ {
-		numNew, err := strconv.ParseFloat(fmt.Sprintf("%.2f", float64(num)/float64(math.Pow(float64(base), float64(i)))), 64)
-		if err != nil {
+		numNew, errFloat := strconv.ParseFloat(fmt.Sprintf("%.2f", float64(num)/float64(math.Pow(float64(base), float64(i)))), 64)
+		if errFloat != nil {
+			err = fmt.Errorf(errFloat.Error())
 			return
 		}
 		if int(numNew) < base {

@@ -166,8 +166,12 @@ import (
 
 func main(){
 	var num, unit, unitType = 156789, "KB", "byte"
-	numLast, unitLast := unitconv.Compute(num, unit, unitType)
-	fmt.Println(numLast, unitLast)
+	numLast, unitLast, err := unitconv.Compute(num, unit, unitType)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(numLast)
+	fmt.Println(unitLast)
 }
 ```
 ### 参数说明：
@@ -203,6 +207,6 @@ func main(){
 4. billion
 ### 返回值说明
 ```
-// 四舍五入保留2位小数float64， string
-153.11 MB
+- 153.11 	// 四舍五入保留2位小数, float64
+- MB 		// string
 ```

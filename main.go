@@ -83,6 +83,10 @@ func main() {
 
 	// 8
 	var num, unit, unitType = 156789, "KB", "byte"
-	numLast, unitLast := unitconv.Compute(num, unit, unitType)
-	fmt.Println(numLast, unitLast)
+	numLast, unitLast, err := unitconv.Compute(num, unit, unitType)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(numLast)
+	fmt.Println(unitLast)
 }
